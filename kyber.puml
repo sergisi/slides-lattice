@@ -1,0 +1,7 @@
+@startuml
+!theme plain
+skinparam dpi 300
+Alice -> Bob: <latex>u = A^T r + e_1,\\ v = b^T r + e_2 + \texttt{toRing}(m)</latex>
+Bob -> Bob: <latex>m^* = v - s^T u</latex>
+Bob -> Bob: <latex>m = \lfloor m^* \rceil </latex>
+@enduml
