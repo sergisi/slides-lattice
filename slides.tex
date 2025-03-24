@@ -189,13 +189,26 @@ pdflang={English}}
 \end{frame}
 \begin{frame}[label=security-errors-and-how-to-avoid-them]
   \frametitle{Security errors and how to avoid them}
+  The error must be equivalent to a continuous spherical Guassian
+  distribution of $r \geq 2$ \cite{how-not-to-instantiate}.
 
+  In discrete terms is better to use a Centered Binomial
+  Distribution of parameter $n$. This corresponds to $2n$ 
+  toss coins ($n = 2$):
+  \[
+    \sum a_i - \sum b_i = a_0 + a_1 - b_0 - b_1
+  \]
+  This is easier to derandomize.
+  \pause
+
+  There is an estimator \cite{laticce-estimator} to check the
+  security bits of a protocol.
 \end{frame}
 \begin{frame}[label=a-gentle-introduction-to-kyber]
   \frametitle{A gentle introduction to Kyber}
   \begin{figure}
-  \centering
-  \includegraphics[width=0.9\textwidth]{kyber.png}
+    \centering
+    \includegraphics[width=0.9\textwidth]{kyber.png}
   \end{figure}
 \end{frame}
 \begin{frame}
@@ -209,7 +222,8 @@ pdflang={English}}
       m^* &= m' + e'
     \end{array}
   \end{equation}
-  And roungind just deletes the error with a probability of
+  And rounding just deletes the error with a probability of
+
   failure of $2^{-128}$
 \end{frame}
 \begin{frame}[label=a-gentle-introduction-to-dilithium]
@@ -254,22 +268,28 @@ pdflang={English}}
       \end{equation*}
     \item Compute a challenge $c = \mathcal H (w, e')$ where
       $c \in \mathcal R$
-  
     \item Compute:
-  \begin{equation*}
-    \begin{array}{rl}
-      z_0 &= y_0 + cs \\
-      z_1 &= y_1 + cr_1 \\
-    \end{array}
-  \end{equation*}
+      \begin{equation*}
+        \begin{array}{rl}
+          z_0 &= y_0 + cs \\
+          z_1 &= y_1 + cr_1 \\
+        \end{array}
+      \end{equation*}
     \item Perform a rejection sampling algorithm on $z$, 
       so the secret cannot be retrieved.
   \end{enumerate}
-
 \end{frame}
-\begin{frame}[label=accepted-nist-algorithms]
-  \frametitle{Accepted NIST Algorithms}
-  
+\begin{frame}
+  \frametitle{NIZK acceptance}
+
+  Check:
+  \begin{equation*}
+    \begin{array}{rl}
+      w + cB_0r_0 &= Az_0 - B_1z_1 \\
+      e' + ce &= E z_1
+    \end{array}
+  \end{equation*}
+  And all $||z_i|| \leq \beta$.
 \end{frame}
 \end{document}
 
