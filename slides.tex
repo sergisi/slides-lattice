@@ -13,7 +13,7 @@
 \usetheme{default}
 \author{Sergi Simón Balcells}
 \date{\today}
-\title{}
+\title{Introduction to lattice-based postquantum Cryptography}
 \hypersetup{
   pdfauthor={Sergi Simón Balcells},
   pdftitle={},
@@ -22,13 +22,22 @@
   pdfcreator={Emacs 30.1 (Org mode 9.7.22)},
 pdflang={English}}
 \begin{document}
+\maketitle
 
-\begin{frame}{Outline}
-  \tableofcontents
-\end{frame}
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\section{Preliminaries}
+% TODO: Add citations on everything
+% 1. Ajtai 
+% 2. Ring 
+% 3. NTRU 
+% 4. Specs of falcon, kyber, dilithium 
+% 5. Blind signature for NIZK 
 
-\begin{frame}[label=preliminaries]{Preliminaries}
-\end{frame}
+
 \begin{frame}[label=lattice]{Lattice}
   Let \(B = \{b_1, b_2, \dots, b_m\}\), be a set of linear
   independent
@@ -57,8 +66,8 @@ pdflang={English}}
 
   This problem is NP-hard.
 \end{frame}
-\begin{frame}[label=short-integer-solution]{Short Integer
-  Solution}
+\begin{frame}[label=short-integer-solution]
+  \frametitle{Short Integer Solution}
   Solve:
   \[
     As = 0
@@ -86,8 +95,8 @@ pdflang={English}}
   To collapse a vector, we use the coefficient between 
   $\frac{-q}{2}$ to $\frac{q}{2}$
 \end{frame}
-\begin{frame}[label=limitations-of-ring-approach]{Limitations
-  of Ring Approach}
+\begin{frame}[label=limitations-of-ring-approach]
+  \frametitle{Limitations of Ring Approach}
   The huge adventage with Rings is the computational gains of NTT
   multiplications.
 
@@ -99,9 +108,7 @@ pdflang={English}}
   elements,
   but it is not always possible.
 \end{frame}
-\begin{frame}[label=case-of-study-falcon]{Case of Study: Falcon}
-  Separator. How do I put it? 
-\end{frame}
+\section{Case of Study: Falcon}
 \begin{frame}[label=the-ring]{The Ring}
   The Ring on Falcon is
   \[
@@ -154,6 +161,8 @@ pdflang={English}}
 
   Falcon uses the second, so it signs \(As = H(m || r)\)
 \end{frame}
+
+\section{LWE Variant}
 \begin{frame}[label=lwe-variant]{LWE variant}
   We base our security on:
   \[
@@ -204,6 +213,8 @@ pdflang={English}}
   There is an estimator \cite{laticce-estimator} to check the
   security bits of a protocol.
 \end{frame}
+
+\section{Kyber and Dilithium}
 \begin{frame}[label=a-gentle-introduction-to-kyber]
   \frametitle{A gentle introduction to Kyber}
   \begin{figure}
@@ -243,9 +254,11 @@ pdflang={English}}
   Then check:
   \[c = c'\]
 \end{frame}
+
+\section{NIZK}
 \begin{frame}[label=non-interactive-zero-knowledge-proof]
   \frametitle{Example of a Non-Interactive Zero Knowledge Proof}
-% TODO: Que he de posar? 
+% NOTE: Que he de posar? 
 %  1. He d'ensenyar la creació d'un sistema lineal
 %  2. Hauria de quedar clar que es pot extendre a les necessitats
 %     que convinguin
@@ -279,6 +292,7 @@ pdflang={English}}
       so the secret cannot be retrieved.
   \end{enumerate}
 \end{frame}
+
 \begin{frame}
   \frametitle{NIZK acceptance}
 
@@ -290,6 +304,10 @@ pdflang={English}}
     \end{array}
   \end{equation*}
   And all $||z_i|| \leq \beta$.
+\end{frame}
+
+\begin{frame}
+  Thanks for your attention
 \end{frame}
 \end{document}
 
