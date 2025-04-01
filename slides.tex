@@ -87,7 +87,7 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
   The average case on this problem translates to a hard case
   of SVP.
 
-  Ajtai proved this and used it as a one-time-hash protocol.
+  \cite{original-ajtai} proved this and used it as a one-time-hash protocol.
 \end{frame}
 \begin{frame}[label=a-ring-approach]{A Ring Approach}
   For this problem to be hard, it needs large key sizes.
@@ -97,7 +97,8 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
   So, we change the base Ring from \(\mathbb Z_p\) to
   \(\mathcal R = \mathbb Z_q[x] / f(x)\) \cite{ring-sis, ring-lwe-1,ring-lwe-2}.
   \pause
-  To collapse a vector, we use the coefficient between 
+
+  To get the norm, we use the coefficient between 
   $\frac{-q}{2}$ to $\frac{q}{2}$
 \end{frame}
 \begin{frame}[label=limitations-of-ring-approach]
@@ -162,8 +163,7 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
   it \alert{can} output different solutions (\(s_1, s_2\)
   s.t. \(As_i = v\) ).
 
-  With enough of these solutions one can create an orthogonal
-  basis.
+  With enough of these solutions one can create a trapdoor.
 
   There are two solutions on this:
 
@@ -232,6 +232,23 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
 \section{Kyber and Dilithium}
 \begin{frame}[label=a-gentle-introduction-to-kyber]
   \frametitle{A gentle introduction to Kyber}
+  The public key is:
+  \[
+    As + e = b
+  \]
+  To pass a binary message $m$ to a Ring element 
+  \texttt{toRing($m$)}, treat each bit as a coefficient and
+  multiply it by $\frac{q}{2}$.
+  \pause
+
+  Example: $m = 0110$:
+  \[
+  \texttt{toRing}(m) = 0x^3 + \frac{q}{2}x^2 + \frac{q}{2}x + 0
+  \]
+
+\end{frame}
+\begin{frame}
+  \frametitle{The Protocol}
   \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{kyber.png}
@@ -260,7 +277,7 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
   \begin{enumerate} 
     \item $w = \lfloor Ay \rceil$
     \item $c = H(m || w)$, $c \in \mathcal R$ <<and small>>.
-    \item $z = y + cs$ and perform rejection sampling.
+    \item $z = y + cs$ and perform \alert{rejection sampling}.
   \end{enumerate}
   The signature is $\sigma = (z, c)$
   \pause
@@ -323,9 +340,11 @@ Esta investigación resulta del Proyecto Estratégico 'Avances en criptografía 
   And all $||z_i|| \leq \beta$.
 \end{frame}
 
+\begin{frame}
+  \huge{Thanks for your attention}
+\end{frame}
 \begin{frame}[allowframebreaks]
   \frametitle{References}
-  Thanks for your attention
   \bibliographystyle{apalike}
   \bibliography{bib}
 \end{frame}
